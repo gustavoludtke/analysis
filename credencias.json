@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "nice-ocean-446703-m6",
+  "private_key_id": "747c1b278bbff973127e7f56b818e1c64f7de597",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC4I9U6L+8FcwT1\n9LAvz9GDzL/loLiOMmMEQMH/jrzZZhfsf8YcNXVOftHLDE8LrcrciEL6WTxZd4HF\nRjnj3Z93uDHm+ldSAMvZBjyUJ242hdw0g2LciRRuOy3hzODSntw77oOrjJHCLnsN\nbut1GzmGCy3W50cmNElXKBhXxrqlA2gfQISFqFY3sNGcVBIKfs1AG8W83B+pUElG\nthdue32bL95occ61F9ulgvCl+dMApvqqR5fsYiehM0kVJn/fRMdJfiJaMlMLvaK/\noihPvtqj+VlPk0aSqEdTNvCjmlYatWpCC8WAFDJaCjzO/3IJ2LKl895j4L3b+goE\nK1PWGo/PAgMBAAECggEAPcHm1akV5SH6W/NA1AhDII0fHwiUXTyQ8PA3IFrjA5a2\nF1+TNgrH2Re3jP4H1Mbo7qXUsNoU33yxTVSMPdwqi6B/PBRiDOKve44X6yh+UlL6\n07HtCkH/VCkM7lokXP9ipccM6hAvIo0sQAkfdxs2Y7qEGTtgJXQL1Othnq7MEmNK\n0GHqXef62RLSDFV4yWXIFqQ0p4HGcn1YlEyr6UbONXKT2P/93gj+xvS5CCn3t2oH\nUChRLaZ3H8hydCA57UYvPk6EHavO74FxsXvmQmzzMupM161JHt9N3vltmwb+GU/L\nLgM5tTWSog2t2W33t1IzwLWW/3WvIdLjam+Fk655YQKBgQD8eRckRWLLZbiwrb52\nTn3OwsmxlkW+HBmyA6N5SJfyasUtvraPVPfQn3GyoH05Ie6EFOzJkzUfc5zzrBaO\nCNmnOFDZfi04+z7FNO2xXQCuloD8pT4mm6pr5G/E9TZxDgNU4K1dxY47c9iRYru4\nDd8MsCWHr2zxPJppNDM6L4RwFQKBgQC6tl2dkAyaajLi1xwYIxKiMbSG5lxzHLTC\n8TQQuze73tUU4NjANrjLhmwui0CBEbbBGTPX1E/HBaqer7RsHPN7U68MzjsXC1Hk\n6kjZjCpsWGmYsaspywH+rFQjefjSpNRR4HqYFOl6U+eYnJ/0/vsmXm003rMU+qmA\ngvjMgraVUwKBgFun2i7gwaz1kMcTTEHG3QVi0bYWx9rseKeXipFNOVxYRp0Ez2HZ\nht3GBJDEkrFbECwDLLNBLdftMN2Fa+rEa7+5QiCzHdfB3lfZjzEEgmrfWJRfqOB7\nQrNIiwsFum3wmGUH6+hPAAO1WrntDhkTcBY7HGTV2sb5KVVoDfDhr0LBAoGBALID\ntXXIJXwDzMhh9zM8HUPuyAPmFjbaI63Jcq6RES5Z4iapyX5Zrg699t7ZfYKRdQDe\nGoOotPc3+9iYBRke8TWgL8GxzrzF2iq7BQIFlVz/Xo5qtpp+J0S84OuCGy4aYSQ/\nNiNRrNkoriLfEdLwWFvYo55Ixc02v+z68mNqLNJpAoGADqiEatcFW/7u4hnf3al3\nYKO62ntQZIwf00vZult4utilkf246PfMHIFEOqZ4W68PHVbW9HdSYjCrKR94l4lO\nafVVAyEK3pYZtQhGVgq/GcQM2TbWTHQwAnu87jXn9dfCBRq05bNJ8VKPgXqkvBEc\n/BchfkQP5/eHuq59tc7V3dE=\n-----END PRIVATE KEY-----\n",
+  "client_email": "vision-api-calle@nice-ocean-446703-m6.iam.gserviceaccount.com",
+  "client_id": "114575604868001242716",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/vision-api-calle%40nice-ocean-446703-m6.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
