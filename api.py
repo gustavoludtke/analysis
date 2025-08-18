@@ -14,17 +14,18 @@ app = Flask(__name__)
 vision_client = vision.ImageAnnotatorClient()
 gemini_model = genai.GenerativeModel('gemini-1.5-flash')
 
-# --- NOVA FUNÇÃO DE EXTRAÇÃO COM IA (MAIS DETALHADA) ---
+# --- FUNÇÃO DE EXTRAÇÃO COM IA (REFINADA) ---
 def extrair_dados_vaga_com_ia(texto_completo):
     prompt = f"""
     Você é um assistente de RH especialista em analisar anúncios de vagas.
     Analise o texto de anúncio de vaga de emprego a seguir e extraia as seguintes informações em um formato JSON.
     As chaves do JSON devem ser exatamente: "nome_empresa", "whatsapp", "email", "beneficios", "requisitos", "nome_cargo", "horario_trabalho", "atividades", "carga_horaria".
 
-    Regras:
-    - Para os campos "beneficios", "requisitos" e "atividades", retorne uma lista (array) de strings. Se não encontrar, retorne uma lista vazia [].
-    - Para os outros campos, retorne uma única string.
-    - Se qualquer outro campo de string não for encontrado no texto, o valor correspondente no JSON deve ser a string "não informado".
+    Regras de Extração Específicas:
+    - "whatsapp": Encontre QUALQUER número de telefone no texto e classifique-o como WhatsApp. Formate-o como você o encontrou.
+    - "email": Encontre QUALQUER texto que se pareça com um endereço de e-mail (ex: nome@exemplo.com).
+    - "beneficios", "requisitos", "atividades": Retorne uma lista (array) de strings. Se não encontrar, retorne uma lista vazia [].
+    - Para todos os outros campos de string: Se a informação não for encontrada no texto, o valor correspondente no JSON deve ser a string "não informado".
 
     Texto da Vaga:
     ---
