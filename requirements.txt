@@ -1,5 +1,4 @@
-Flask
-gunicorn
-google-cloud-vision
-google-generativeai
-
+Flask==3.0.3
+gunicorn==22.0.0
+google-cloud-vision==3.7.2
+google-generativeai==0.7.1
