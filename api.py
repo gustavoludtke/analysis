@@ -1,33 +1,30 @@
 import os
-import re # Usaremos re para uma limpeza final
+import re
+import json
 import google.generativeai as genai
 from flask import Flask, request, jsonify
 from google.cloud import vision
 
 # --- CONFIGURAÇÃO ---
-# Chave da Vision API (via Secret File)
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'credenciais.json'
-
-# Chave da Gemini API (via Environment Variable)
 GEMINI_API_KEY = os.environ.get('GEMINI_API_KEY')
 genai.configure(api_key=GEMINI_API_KEY)
 
 app = Flask(__name__)
 vision_client = vision.ImageAnnotatorClient()
-gemini_model = genai.GenerativeModel('gemini-1.5-flash') # Usando um modelo rápido e eficiente
+gemini_model = genai.GenerativeModel('gemini-1.5-flash')
 
-# --- NOVA FUNÇÃO DE EXTRAÇÃO COM GEMINI AI ---
+# --- NOVA FUNÇÃO DE EXTRAÇÃO COM IA (MAIS DETALHADA) ---
 def extrair_dados_vaga_com_ia(texto_completo):
-    # Instrução (Prompt) para a IA
     prompt = f"""
-    Analise o texto de anúncio de vaga de emprego a seguir e extraia as seguintes informações em formato JSON:
-    - cargo: O título ou nome da vaga.
-    - requisitos: Uma lista de todos os requisitos mencionados.
-    - beneficios: Uma lista de todos os benefícios, se mencionados.
-    - local: A cidade, estado ou se a vaga é remota/híbrida.
-    - contato: O email ou telefone para contato.
+    Você é um assistente de RH especialista em analisar anúncios de vagas.
+    Analise o texto de anúncio de vaga de emprego a seguir e extraia as seguintes informações em um formato JSON.
+    As chaves do JSON devem ser exatamente: "nome_empresa", "whatsapp", "email", "beneficios", "requisitos", "nome_cargo", "horario_trabalho", "atividades", "carga_horaria".
 
-    Se uma informação não for encontrada, retorne "Não encontrado" para strings ou uma lista vazia para listas.
+    Regras:
+    - Para os campos "beneficios", "requisitos" e "atividades", retorne uma lista (array) de strings. Se não encontrar, retorne uma lista vazia [].
+    - Para os outros campos, retorne uma única string.
+    - Se qualquer outro campo de string não for encontrado no texto, o valor correspondente no JSON deve ser a string "não informado".
 
     Texto da Vaga:
     ---
@@ -36,29 +33,17 @@ def extrair_dados_vaga_com_ia(texto_completo):
     """
     
     try:
-        # Chama a API do Gemini
         response = gemini_model.generate_content(prompt)
-        
-        # O Gemini pode retornar o JSON dentro de um bloco de código Markdown. Vamos limpar isso.
         cleaned_text = re.sub(r'```json\n|\n```', '', response.text).strip()
-
-        # Tenta decodificar o JSON retornado pela IA
-        import json
-        dados = json.loads(cleaned_text)
         
-        # Adiciona o texto completo original para referência
+        dados = json.loads(cleaned_text)
         dados['texto_completo'] = texto_completo
         
         return dados
     except Exception as e:
-        # Se a IA falhar ou retornar um formato inesperado, retorna o texto bruto
         return {
-            'cargo': 'IA não conseguiu extrair',
-            'requisitos': [],
-            'beneficios': [],
-            'local': 'IA não conseguiu extrair',
-            'contato': 'IA não conseguiu extrair',
-            'texto_completo': f"Erro ao processar com a IA: {str(e)}\n--- Texto Original ---\n{texto_completo}"
+            'erro': f"Erro ao processar com a IA: {str(e)}",
+            'texto_completo': texto_completo
         }
 
 @app.route('/analisar', methods=['POST'])
@@ -74,12 +59,10 @@ def analisar_imagem():
 
         if textos:
             texto_completo = textos[0].description
-            # Chama a nova função com IA
             dados_extraidos = extrair_dados_vaga_com_ia(texto_completo)
             return jsonify(dados_extraidos)
         else:
             return jsonify({"erro": "Nenhum texto encontrado na imagem."})
-
     except Exception as e:
         return jsonify({"erro": f"Erro na API do Google Vision: {str(e)}"}), 500
 
